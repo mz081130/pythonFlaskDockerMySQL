@@ -2,7 +2,7 @@ Project Description
 This project is a homework assignment on how to get Pycharm setup with Docker, Flask, MySQL, and Postman
 
 ####SQL Data Screenshot
-![SQL Screenshot](screenshot/pycharmSS.png)
+![SQL Screenshot](screenshots/pycharmSS.png)
 
 ####Postman Screenshot
-![Postman Screenshot](screenshot/postmanSS.png)
+![Postman Screenshot](screenshots/postmanSS.png)
