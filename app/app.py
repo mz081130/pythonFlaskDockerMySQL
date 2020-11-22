@@ -56,17 +56,16 @@ def form_update_post(ID):
 
 @app.route('/zillow/new', methods=['GET'])
 def form_insert_get():
-    return render_template('new.html', title='New zillow Form')
+    return render_template('new.html', title='New Property Form')
 
 
 @app.route('/zillow/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('house'), request.form.get('Car_Garage'), request.form.get('Living_Space_sq_ft'),
-                 request.form.get('Beds'), request.form.get('Baths'), request.form.get('Year'),
-                 request.form.get('Zip'), request.form.get('List_price'))
-    sql_insert_query = """INSERT INTO tblZillowImport (house,Car_Garage, Living_Space_sq_ft, Beds, Baths, Zip, Year, List_Price) 
-                        VALUES (%s,%s,%s, %s,%s,%s,%s,%s) """
+                 request.form.get('Beds'), request.form.get('Baths'), request.form.get('Zip'),
+                 request.form.get('Year'), request.form.get('List_Price'))
+    sql_insert_query = """INSERT INTO tblZillowImport (house,Car_Garage,Living_Space_sq_ft,Beds,Baths,Zip,Year,List_Price) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
