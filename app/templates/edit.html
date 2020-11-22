@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/edit/{{property.ID}}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="house">House</label>
+            <input id='house' type="text" class="form-control" placeholder="House Name" name="house"
+                   value="{{property.house}}">
+            <div class="col">
+                <label for="Living_Space_sq_ft">Living Space</label>
+                <input id="Living_Space_sq_ft" type="text" class="form-control" placeholder="Square footage"
+                       name="fldName"
+                       value="{{property.Living_Space_sq_ft}}">
+            </div>
+            <div class="col">
+                <label for="Car_Garage">Car Parking Space</label>
+                <input id="Car_Garage" type="text" class="form-control" placeholder="# of car parking space"
+                       name="Car_Garage" value="{{property.Car_Garage}}">
+            </div>
+            <div class="col">
+                <label for="Beds">Beds</label>
+                <input id="Beds" type="text" class="form-control" placeholder="# of beds"
+                       name="Beds" value="{{property.Beds}}">
+            </div>
+            <div class="col">
+                <label for="Baths">Baths</label>
+                <input id="Baths" type="text" class="form-control" placeholder="# of baths" name="Baths"
+                       value="{{property.Baths}}">
+            </div>
+            <div class="col">
+                <label for="Zip">Zip</label>
+                <input id="Zip" type="text" class="form-control" placeholder="Zip code" name="Zip"
+                       value="{{property.Zip}}">
+            </div>
+            <div class="col">
+                <label for="Year">Year</label>
+                <input id="Year" type="text" class="form-control" placeholder="Year of Build" name="Year"
+                       value="{{property.Year}}">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="List_Price">List Price</label>
+
+                    <input id="List_Price" type="text" class="form-control" placeholder="Asking price"
+                           name="List_Price" value="{{property.List_Price}}">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/zillow/new" method="POST">
+    <div class="row">
+        <div class="col">
+            <label for="house">House</label>
+            <input id="house" type="text" class="form-control" placeholder="House Name" name="house">
+        </div>
+        <div class="col">
+            <label for="Living_Space_sq_ft">Living Square foot</label>
+            <input id="Living_Space_sq_ft" type="text" class="form-control" placeholder="Square footage" name="Living_Space_sq_ft">
+        </div>
+        <div class="col">
+            <label for="car_garage">Car Parking Space</label>
+            <input id="car_garage" type="text" class="form-control" placeholder="# of car parking space" name="car_garage">
+        </div>
+        <div class="col">
+            <label for="Beds">Beds</label>
+            <input id="Beds" type="text" class="form-control" placeholder="# of Beds"
+                   name="Beds">
+        </div>
+        <div class="col">
+            <label for="Baths">Baths</label>
+            <input id="Baths" type="text" class="form-control" placeholder="# of Baths" name="Baths">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="Zip">Zip</label>
+            <input id="Zip" type="text" class="form-control" placeholder="Zip Code" name="Zip">
+        </div>
+        <div class="col">
+            <label for="Year">Year of Build</label>
+            <input id="Year" type="text" class="form-control" placeholder="Year of construction" name="Year">
+        </div>
+        <div class="col">
+            <label for="List_Price">List Price</label>
+            <input id="List_Price" type="text" class="form-control" placeholder="Asking Price" name="List_Price">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Success</button>
+
+</form>
+
+{% endblock %}

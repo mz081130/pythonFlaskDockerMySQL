@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <h5 class="card-title"> {{ property.house }}</h5>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">House: {{ property.house }}</li>
+        <li class="list-group-item">Living Space:  {{ property.Living_Space_sq_ft }}</li>
+        <li class="list-group-item">Parking Space:  {{ property.Car_Garage }}</li>
+        <li class="list-group-item">Beds:  {{ property.Beds }}</li>
+        <li class="list-group-item">Baths:  {{ property.Baths }}</li>
+        <li class="list-group-item">Zip Code:  {{ property.Zip }}</li>
+        <li class="list-group-item">Year of Build:  {{ property.Year }}</li>
+        <li class="list-group-item">Listing Price:  {{ property.List_Price }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="/edit/{{property.ID}}" class="card-link btn btn-primary">Edit</a>
+    </div>
+</div>
+<form action="/delete/{{property.ID}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+
+
+{% endblock %}
