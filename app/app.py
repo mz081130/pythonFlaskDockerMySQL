@@ -6,6 +6,7 @@ from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 
 app = Flask(__name__)
+app.debug = True
 mysql = MySQL(cursorclass=DictCursor)
 
 app.config['MYSQL_DATABASE_HOST'] = 'db'
@@ -100,20 +101,41 @@ def api_retrieve(ID) -> str:
     return resp
 
 
-@app.route('/api/v1/zillow/', methods=['POST'])
+@app.route('/api/v1/zillow', methods=['POST'])
 def api_add() -> str:
+    content = request.json
+    cursor = mysql.get_db().cursor()
+    inputData = (content['house'], content['Car_Garage'], content['Living_Space_sq_ft'],
+                 content['Beds'], content['Baths'],
+                 content['Zip'], content['Year'], request.form.get('List_Price'))
+    sql_insert_query = """INSERT INTO tblZillowImport (house,Car_Garage,Living_Space_sq_ft,Beds,Baths,Zip,Year,List_Price) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) """
+    cursor.execute(sql_insert_query, inputData)
+    mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
 @app.route('/api/v1/zillow/<int:ID>', methods=['PUT'])
 def api_edit(ID) -> str:
+    cursor = mysql.get_db().cursor()
+    content = request.json
+    inputData = (content['house'], content['Car_Garage'], content['Living_Space_sq_ft'],
+                 content['Beds'], content['Baths'],
+                 content['Zip'], content['Year'], content['List_Price'], ID)
+    sql_update_query = """UPDATE tblZillowImport t SET t.house = %s, t.Car_Garage = %s, t.Living_Space_sq_ft = %s, t.Beds = %s, 
+        t.Baths = %s, t.Zip = %s, t.Year = %s, t.List_Price = %s WHERE t.ID = %s """
+    cursor.execute(sql_update_query, inputData)
+    mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/zillow/<int:ID>', methods=['DELETE'])
+@app.route('/api/v1/zillow/<int:ID>', methods=['DELETE'])
 def api_delete(ID) -> str:
+    cursor = mysql.get_db().cursor()
+    sql_delete_query = """DELETE FROM tblZillowImport WHERE id = %s """
+    cursor.execute(sql_delete_query, ID)
+    mysql.get_db().commit()
     resp = Response(status=210, mimetype='application/json')
     return resp
 
