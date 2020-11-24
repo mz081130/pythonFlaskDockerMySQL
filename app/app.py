@@ -107,7 +107,7 @@ def api_add() -> str:
     cursor = mysql.get_db().cursor()
     inputData = (content['house'], content['Car_Garage'], content['Living_Space_sq_ft'],
                  content['Beds'], content['Baths'],
-                 content['Zip'], content['Year'], request.form.get('List_Price'))
+                 content['Zip'], content['Year'], content['List_Price'])
     sql_insert_query = """INSERT INTO tblZillowImport (house,Car_Garage,Living_Space_sq_ft,Beds,Baths,Zip,Year,List_Price) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
@@ -124,6 +124,7 @@ def api_edit(ID) -> str:
                  content['Zip'], content['Year'], content['List_Price'], ID)
     sql_update_query = """UPDATE tblZillowImport t SET t.house = %s, t.Car_Garage = %s, t.Living_Space_sq_ft = %s, t.Beds = %s, 
         t.Baths = %s, t.Zip = %s, t.Year = %s, t.List_Price = %s WHERE t.ID = %s """
+    print(sql_update_query)
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
